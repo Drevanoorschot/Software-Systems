@@ -1,29 +1,29 @@
 package ss.week2;
-import ss.week2.NewLamp;
+
 
 public class TestLamp {
 	public static void main(String[] args) {
-		new TestLamp ().runTest();
+		new TestLamp().runTest();
 	}
-	private void runTest () {
+	private void runTest() {
 		lamp = new NewLamp();
-		testInitialState ();
-		testSwitchSetting ();
-		testReset ();
+		testInitialState();
+		testSwitchSetting();
+		testReset();
 	}
 	public NewLamp lamp;
-	private void testInitialState () {
+	private void testInitialState() {
 		System.out.println("testInitialState:");
-		System.out.println (
+		System.out.println(
 				lamp.getState() == NewLamp.State.OFF);
 	}
-	private void testSwitchSetting () {
+	private void testSwitchSetting() {
 		lamp.switchSetting();
 		System.out.println("testSwitchSetting:");
 		System.out.println(
 				lamp.getState() == NewLamp.State.LOW);
 	}
-	private void testReset () {
+	private void testReset() {
 		lamp.reset();
 		System.out.println("testReset:");
 		System.out.println(

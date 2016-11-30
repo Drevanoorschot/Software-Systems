@@ -55,7 +55,8 @@ public class HotelTest {
     }
 
     /**
-     * If the specified guest is checked in, he must be checked out, i.e., afterwards, he must not have a room anymore,
+     * If the specified guest is checked in, he must be checked out, i.e., afterwards, 
+     * he must not have a room anymore,
      * and his room must now be empty. The room's safe must be inactivated as well.
      */
     @Test
@@ -104,7 +105,7 @@ public class HotelTest {
     }
 
     /**
-     * getRoom must not return any room, if the guest is not checked in
+     * getRoom must not return any room, if the guest is not checked in.
      */
     @Test
     public void testGetRoomBeforeCheckIn() {
@@ -133,8 +134,10 @@ public class HotelTest {
     }
 
     /**
-     * ToString is difficult to test fully because there is no restriction on the format of the returned String.
-     * At least it can be tested that a String is returned and that it contains the name of a checked in guest.
+     * ToString is difficult to test fully because there is 
+     * no restriction on the format of the returned String.
+     * At least it can be tested that a String is returned 
+     * and that it contains the name of a checked in guest.
      */
     @Test
     public void testToString() {

@@ -27,7 +27,7 @@ public class PasswordTest {
 	}
 
 	/**
-	 * Test the method <tt>acceptable(suggestion)</tt>
+	 * Test the method <tt>acceptable(suggestion)</tt>.
 	 */
     @Test
 	public void testAcceptable() {
@@ -38,7 +38,7 @@ public class PasswordTest {
 	}
 
     /**
-	 * Test the method <tt>testWord</tt>
+	 * Test the method <tt>testWord</tt>.
 	 */
     @Test
 	public void testTestWord() {

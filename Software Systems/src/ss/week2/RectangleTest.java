@@ -2,7 +2,6 @@ package ss.week2;
 
 import org.junit.Before;
 import org.junit.Test;
-import ss.week2.Rectangle;
 
 import static org.junit.Assert.assertEquals;
 //import static org.junit.Assert.assertTrue;
@@ -37,10 +36,10 @@ public class RectangleTest {
 	@Test
 	public void testArea() {
 		assertEquals(200, r1.area());
-		assertEquals(0,r2.area());
+		assertEquals(0, r2.area());
 	}
 	@Test
-	public void testPerimeter(){
+	public void testPerimeter() {
 		assertEquals(60, r1.perimeter());
 		assertEquals(0, r2.perimeter());
 	}

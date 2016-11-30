@@ -3,7 +3,7 @@ package ss.week1;
 public class Password {
 	public static final String INITIAL = "testtest";
 	public String password;
-	public Password () {
+	public Password() {
 		password = INITIAL;
 	}
 	public boolean acceptable(String suggestion) {
@@ -17,8 +17,7 @@ public class Password {
 		if (testWord(oldpass) && acceptable(newpass)) {
 			password = newpass;
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}

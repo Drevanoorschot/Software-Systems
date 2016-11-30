@@ -2,7 +2,7 @@ package ss.week1;
 
 public class Employee {
 	public static void main(String[] args) {
-		Employee employee = new Employee ();
+		Employee employee = new Employee();
 		employee.payout();
 		System.out.println("Salary:");
 		System.out.println(employee.salary);
@@ -11,16 +11,15 @@ public class Employee {
 	private int hours; 		//hours worked 
 	private double rate;	//hourly pay rate (dollar)
 	private double salary;	//payout
-	public Employee () {
+	public Employee() {
 		hours = 50;
 		rate = 2.00;
 	}
-	public void payout () {
+	public void payout() {
 		if (hours <= OVERTIME_HOURS) {
-			salary = hours*rate;
-		}
-		else {
-			salary = OVERTIME_HOURS*rate + (hours-OVERTIME_HOURS)*(rate/2);
+			salary = hours * rate;
+		} else {
+			salary = OVERTIME_HOURS * rate + (hours - OVERTIME_HOURS) * (rate / 2);
 		}
 	}
 }

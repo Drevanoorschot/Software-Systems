@@ -13,7 +13,7 @@ public class NewLamp {
 	}
 	
 	//@ ensures  getState() == State.OFF;
-	public NewLamp () {
+	public NewLamp() {
 		state = State.OFF;
 	}
 	/*@
@@ -22,7 +22,7 @@ public class NewLamp {
 	 ensures \old(getState()) == State.MEDIUM ==> getState() == State.HIGH;
 	 ensures \old(getState()) == State.HIGH ==> getState() == State.OFF;
 	 */
-	public void switchSetting () {
+	public void switchSetting() {
 		switch (state) {
 			case OFF: 
 				state = State.LOW;
@@ -41,7 +41,7 @@ public class NewLamp {
 		}
 	}
 	//@ ensures getState() == State.OFF;
-	public void reset () {
+	public void reset() {
 		state = State.OFF;
 	}
 	
@@ -51,7 +51,7 @@ public class NewLamp {
 	  getState() == State.HIGH;
 	 */
 	//@pure
-	public State getState () {
+	public State getState() {
 		return this.state;
 	}
 }

@@ -16,8 +16,7 @@ public class Rectangle {
     	if (theLength > 0 && theWidth > 0) {
         	length = theLength;
         	width = theWidth;
-    	}
-    	else {
+    	} else {
     		length = 0;
     		width  = 0;
     	}
@@ -30,7 +29,7 @@ public class Rectangle {
     //@ ensures \result > 0;
     /*@ pure */
     public int length() {
-	return length;
+    	return length;
     }
 
     /**
@@ -39,7 +38,7 @@ public class Rectangle {
     //@ ensures \result > 0;
     /*@ pure */
     public int width() {
-	return width;
+    	return width;
     }
 
     /**
@@ -49,7 +48,7 @@ public class Rectangle {
     //@ ensures \result == width ()*length ();
     /*@ pure */
     public int area() {
-	return width() * length();
+    	return width() * length();
     }
 
     /**
@@ -59,6 +58,6 @@ public class Rectangle {
     //@ ensures \result == width ()*2 + length ()*2;
     /*@ pure */
     public int perimeter() {
-	return width() * 2 + length * 2;
+    	return width() * 2 + length * 2;
     }
 }

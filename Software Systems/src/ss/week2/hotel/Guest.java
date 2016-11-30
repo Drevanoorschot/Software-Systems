@@ -1,6 +1,6 @@
 package ss.week2.hotel;
 /**
- * Hotel guest with name and possibly a room
+ * Hotel guest with name and possibly a room.
  * @author Dré van Oorschot
  * @version $Revision: 1.0 $
  */
@@ -11,13 +11,13 @@ public class Guest {
      * Creates a <code>Guest</code> with the given name, without a room.
      * @param name of the new <code>Guest</code>
      */
-	public Guest (String n) {
+	public Guest(String n) {
 		name = n;
 	}
 	 /**
      * Returns the name of this <code>guest</code>.
      */
-	public String getName () {
+	public String getName() {
 		return name;
 	}
     /**
@@ -26,7 +26,7 @@ public class Guest {
      *         <code>null</code> if this <code>Guest</code> 
      *         is not currently renting a room.
      */
-	public Room getRoom () {
+	public Room getRoom() {
 		return room;
 	}
     /**
@@ -35,13 +35,12 @@ public class Guest {
      *        if <code>false</code> is passed, this <code>Guest</code>
      *        has no room
      */
-	public boolean checkin (Room r) {
+	public boolean checkin(Room r) {
 		if (r.getGuest() == null && this.room == null) {
-			r.setGuest (this);
+			r.setGuest(this);
 			room = r;
 			return true;
-		}
-		else {
+		} else {
 			return false;	
 		}
 		
@@ -52,9 +51,8 @@ public class Guest {
 	public boolean checkout() {
 		if (this.room == null) {
 			return false;
-		}
-		else {
-			this.room.setGuest (null);
+		} else {
+			this.room.setGuest(null);
 			this.room = null;
 			return true;
 		}

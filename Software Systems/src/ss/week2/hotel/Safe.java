@@ -1,5 +1,4 @@
 package ss.week2.hotel;
-import ss.week2.hotel.Password;
 
 public class Safe {
 	public Password password;
@@ -18,8 +17,7 @@ public class Safe {
 		//assert password.testWord(input) == true;
 		if (getPassword().testWord(input)) {
 			active = true;
-		}
-		else {
+		} else {
 			return;
 		}
 	}
@@ -28,13 +26,14 @@ public class Safe {
 		active = false;
 	}
 	//@ requires password != null;
-	//@ ensures (\old(isActive()) == true && getPassword().testWord(password) == true) || isOpen() == true ==> isOpen() == true;
-	public void open(String password) {
+	/*@ ensures (\old(isActive()) == true && getPassword().testWord(pw) == true) || 
+	  isOpen() == true ==> isOpen() == true;
+	 */
+	public void open(String pw) {
 		//assert isActive() == true;
-		if (isActive() && getPassword().testWord(password)) {
+		if (isActive() && getPassword().testWord(pw)) {
 			open = true;
-		}
-		else {
+		} else {
 			return;
 		}
 	}

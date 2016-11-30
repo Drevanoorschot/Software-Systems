@@ -3,16 +3,16 @@ package ss.week1;
 public class Student {
 
 	public static void main(String[] args) {
-		Student student = new Student ();
+		Student student = new Student();
 		System.out.println(student.score);
-		student.passed ();
+		student.passed();
 	}
 	private int score;
-	public Student () {
+	public Student() {
 		System.out.println("Score:");
 		score = 70;
 	}
-	public boolean passed () {
+	public boolean passed() {
 		return score >= 70;
 	}
 		

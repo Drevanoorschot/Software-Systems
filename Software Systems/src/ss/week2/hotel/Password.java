@@ -6,7 +6,7 @@ public class Password {
 	public String password;
 	public String factoryPassword;
 	public Checker checker;
-	public Password () {
+	public Password() {
 		password = INITIAL;
 	}
 	public boolean acceptable(String suggestion) {
@@ -21,8 +21,7 @@ public class Password {
 		if (testWord(oldpass) && acceptable(newpass)) {
 			password = newpass;
 			return true;
-		}
-		else {
+		} else {
 			return false;
 		}
 	}

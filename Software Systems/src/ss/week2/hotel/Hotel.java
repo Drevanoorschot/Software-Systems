@@ -12,23 +12,23 @@ public class Hotel {
 	public String hotelName;
 	
 	public Hotel(String name) {
-	hotelName = name;
-	hotelPassword = new Password();
-	room1 = new Room(101);
-	room2 = new Room(102);
+		hotelName = name;
+		hotelPassword = new Password();
+		room1 = new Room(101);
+		room2 = new Room(102);
 		
 	}
 	//@ requires password == getPassword().password;
 	//@ ensures getRoom(name) == (room1) || getRoom(name) == (room2) || getRoom(name) == null;
 	public Room checkIn(String password, String name) {
 		if (getPassword().testWord(password)) {
-				Guest guest = new Guest(name);
-				Room room = getFreeRoom();
-				if (room != null) {
-					guest.checkin(room);
-					return room;
-				} else {
-					return null;
+			guest = new Guest(name);
+			Room room = getFreeRoom();
+			if (room != null) {
+				guest.checkin(room);
+				return room;
+			} else {
+				return null;
 			}
 		} else {
 			return null;
@@ -38,51 +38,52 @@ public class Hotel {
 	//@ requires getRoom(name) != null;
 	//@ ensures !\old(getRoom(name).getSafe().isActive());
 	//@ ensures getRoom(name) == null;
-	public void checkOut (String name) {
+	public void checkOut(String name) {
 		if (getRoom(name) == null) {
 			return;
-		}else {
-			Guest guest = getRoom(name).getGuest();
+		} else {
+			guest = getRoom(name).getGuest();
 			guest.getRoom().getSafe().deactivate();
 			guest.checkout();
 		}
 	}
 	//@pure
-	public Room getFreeRoom () {
+	public Room getFreeRoom() {
 		if (room1.getGuest() == null) {
 			return room1;
 		}
 		if (room2.getGuest() == null) {
 			return room2;
+		} else {
+			return null;
 		}
-		else return null;
 	}
 	//@pure
-	public Room getRoom (String name) {
+	public Room getRoom(String name) {
 		if (room1.getGuest() != null) {
 			if (room1.getGuest().getName().equals(name)) {
 				return room1;
-			}
-			else {
+			} else {
 				return null;
 			}
 		}
 		if (room2.getGuest() != null) {
 			if (room2.getGuest().getName().equals(name)) {
 				return room2;
-			}
-			else {
+			} else {
 				return null;
 			}
+		} else {
+			return null;
 		}
-		else return null;
 	}
+	
 	//@pure
-	public Password getPassword () {
+	public Password getPassword() {
 		return hotelPassword;
 	}
 	//@pure
-	public String toString () {
+	public String toString() {
 		return "room1:Guest1:" + room1.getGuest() + "SafeActive1:" + room1.getSafe().isActive() +
 			   "room2:Guest2:" + room2.getGuest() + "SafeActive2:" + room2.getSafe().isActive();
 	}
