@@ -5,7 +5,8 @@ import java.io.PrintStream;
 public class Bill {
 	public PrintStream outstream;
 	public double sum;
-	public Bill.Item item;
+	public Bill.Item billItem;
+
 	static interface Item {
 		public double getAmount();
 	}
