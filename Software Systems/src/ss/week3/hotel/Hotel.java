@@ -1,5 +1,6 @@
 package ss.week3.hotel;
 
+import java.io.PrintStream;
 
 public class Hotel {
 	public Room room1;
@@ -10,16 +11,18 @@ public class Hotel {
 	public Safe safe1;
 	public Safe safe2;
 	public String hotelName;
-	
+
 	public Hotel(String name) {
 		hotelName = name;
 		hotelPassword = new Password();
 		room1 = new Room(101);
 		room2 = new Room(102);
-		
+
 	}
-	//@ requires password == getPassword().password;
-	//@ ensures getRoom(name) == (room1) || getRoom(name) == (room2) || getRoom(name) == null;
+
+	// @ requires password == getPassword().password;
+	// @ ensures getRoom(name) == (room1) || getRoom(name) == (room2) ||
+	// getRoom(name) == null;
 	public Room checkIn(String password, String name) {
 		if (getPassword().testWord(password)) {
 			guest = new Guest(name);
@@ -35,9 +38,9 @@ public class Hotel {
 		}
 	}
 
-	//@ requires getRoom(name) != null;
-	//@ ensures !\old(getRoom(name).getSafe().isActive());
-	//@ ensures getRoom(name) == null;
+	// @ requires getRoom(name) != null;
+	// @ ensures !\old(getRoom(name).getSafe().isActive());
+	// @ ensures getRoom(name) == null;
 	public void checkOut(String name) {
 		if (getRoom(name) == null) {
 			return;
@@ -47,7 +50,8 @@ public class Hotel {
 			guest.checkout();
 		}
 	}
-	//@pure
+
+	// @pure
 	public Room getFreeRoom() {
 		if (room1.getGuest() == null) {
 			return room1;
@@ -58,7 +62,8 @@ public class Hotel {
 			return null;
 		}
 	}
-	//@pure
+
+	// @pure
 	public Room getRoom(String name) {
 		if (room1.getGuest() != null) {
 			if (room1.getGuest().getName().equals(name)) {
@@ -77,15 +82,33 @@ public class Hotel {
 			return null;
 		}
 	}
-	
-	//@pure
+
+	// @pure
 	public Password getPassword() {
 		return hotelPassword;
 	}
-	//@pure
+
+	// @pure
 	public String toString() {
-		return "room1:Guest1:" + room1.getGuest() + "SafeActive1:" + room1.getSafe().isActive() +
-			   "room2:Guest2:" + room2.getGuest() + "SafeActive2:" + room2.getSafe().isActive();
+		return "room1:Guest1:" + room1.getGuest() + "SafeActive1:" + room1.getSafe().isActive() + 
+				"room2:Guest2:"
+				+ room2.getGuest() + "SafeActive2:" + room2.getSafe().isActive();
+	}
+
+	public Bill getBill(String name, int nights, PrintStream stream) {
+		if (getRoom(name).getGuest().getName() != null && getRoom(name) instanceof PricedRoom) {
+			Bill bill = new Bill(stream);
+			for (int i = 0; i < nights; i++) {
+				bill.newItem((PricedRoom) getRoom(name));
+			}
+			if (getRoom(name).getSafe().isActive()) {
+				bill.newItem((PricedSafe) getRoom(name).getSafe());
+			}
+	
+			return bill;
+		} else {
+			return null;
+		}
 	}
 
 }

@@ -7,7 +7,7 @@ public class Bill {
 	public double sum;
 	public Bill.Item billItem;
 
-	static interface Item {
+	public static interface Item {
 		public double getAmount();
 	}
 
@@ -25,6 +25,6 @@ public class Bill {
 
 	public void newItem(Bill.Item item) {
 		sum = sum + item.getAmount();
-		outstream.println(item.toString());
+		outstream.println(String.format("%1$-20s %2$8s", item.toString(), item.getAmount()));
 	}
 }

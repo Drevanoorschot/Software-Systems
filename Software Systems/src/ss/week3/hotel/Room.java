@@ -11,6 +11,7 @@ public class Room {
     private int number;
     private Guest guest;
     private Safe safe;
+    private PricedSafe pSafe;
 
     // ------------------ Constructor ------------------------
 
@@ -21,6 +22,11 @@ public class Room {
     public Room(int no) {
     	number = no;
     	safe = new Safe();
+    }
+    
+    public Room(int no, double safePrice) {
+    	number = no;
+    	pSafe = new PricedSafe(safePrice);
     }
 
     // ------------------ Queries --------------------------

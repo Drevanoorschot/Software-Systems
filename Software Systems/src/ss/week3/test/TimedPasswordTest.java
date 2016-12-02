@@ -12,7 +12,7 @@ public class TimedPasswordTest {
     @Test
     public void test() throws Exception {
         // Create new TimedPassword that is valid for one second.
-        TimedPassword tp = new TimedPassword(1);
+    	TimedPassword tp = new TimedPassword(1);
         // Assert that it is valid.
         assertFalse("The password should not yet have expired.", tp.isExpired());
         // Sleep for 2 seconds.

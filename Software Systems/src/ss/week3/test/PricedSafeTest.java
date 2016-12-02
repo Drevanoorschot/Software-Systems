@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 
 public class PricedSafeTest {
 
-    private Bill.Item item;
+	private Bill.Item item;
     private static final double PRICE = 6.36;
     private static final String PRICE_PATTERN = ".*6[.,]36.*";
 
