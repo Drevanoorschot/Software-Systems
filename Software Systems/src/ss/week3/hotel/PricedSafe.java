@@ -5,6 +5,7 @@ public class PricedSafe extends Safe implements Bill.Item {
 	public String safe;
 	
 	public PricedSafe(double amount) {
+		super();
 		sAmount = amount;
 		safe = "Safe";
 	}

@@ -14,6 +14,6 @@ public class PricedRoom extends Room implements Bill.Item {
 	}
 	@Override
 	public String toString() {
-		return String.valueOf(rPrice);
+		return super.toString() + String.valueOf(rPrice);
 	}
 }
