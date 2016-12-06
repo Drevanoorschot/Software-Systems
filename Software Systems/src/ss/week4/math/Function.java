@@ -1,7 +1,7 @@
-package ss.week4;
+package ss.week4.math;
 
 public interface Function {
-	public void apply(double argument);
+	public double apply(double c);
 	public Function derivative();
 	public String toString();
 	
