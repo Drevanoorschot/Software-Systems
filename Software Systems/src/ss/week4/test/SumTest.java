@@ -21,7 +21,7 @@ public class SumTest {
 
     @Test
     public void testApply() {
-        assertEquals(CONSTANT_VALUE + CONSTANT_VALUE, sum.apply(0), DELTA);
+    	assertEquals(CONSTANT_VALUE + CONSTANT_VALUE, sum.apply(0), DELTA);
         assertEquals(CONSTANT_VALUE + CONSTANT_VALUE, sum.apply(-1), DELTA);
         assertEquals(CONSTANT_VALUE + CONSTANT_VALUE, sum.apply(1), DELTA);
     }

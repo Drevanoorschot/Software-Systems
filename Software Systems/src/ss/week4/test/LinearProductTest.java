@@ -10,13 +10,14 @@ import static org.junit.Assert.assertTrue;
 
 public class LinearProductTest {
 
-    private static final double DELTA = 1e-15;
+	private static final double DELTA = 1e-15;
     private static final double CONSTANT_VALUE = Math.PI;
     private LinearProduct linearProduct;
 
     @Before
     public void setUp() {
-        linearProduct = new LinearProduct(new Constant(CONSTANT_VALUE), new Constant(CONSTANT_VALUE));
+        linearProduct = new LinearProduct(new Constant(CONSTANT_VALUE), 
+        		new Constant(CONSTANT_VALUE));
     }
 
     @Test

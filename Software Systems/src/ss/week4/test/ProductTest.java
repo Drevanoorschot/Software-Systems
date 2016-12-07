@@ -11,7 +11,7 @@ import static org.junit.Assert.assertTrue;
 
 public class ProductTest {
 
-    private static final double DELTA = 1e-15;
+	private static final double DELTA = 1e-15;
     private static final double CONSTANT_VALUE = Math.PI;
     private Product product;
 

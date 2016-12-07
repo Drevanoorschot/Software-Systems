@@ -1,21 +1,21 @@
 package ss.week4.math;
 
 public class Sum implements Function {
-	double fx;
-	double gx;
-	public Sum(double f, double g) {
+	private Function fx;
+	private Function gx;
+	public Sum(Function f, Function g) {
 		gx = g;
 		fx = f;
 	}
 	public Sum derivative() {
-		return new Sum(0, 0);
+		return new Sum(fx.derivative(), gx.derivative());
 	}
 	public String toString() {
 		return this.toString();
 	}
 	@Override
 	public double apply(double c) {
-		return fx + gx;
+		return fx.apply(c) + gx.apply(c);
 	}
 
 }
