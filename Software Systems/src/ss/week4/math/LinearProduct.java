@@ -18,4 +18,8 @@ public class LinearProduct implements Function {
 		return new LinearProduct(fx.derivative(), n);
 	}
 	
+	public Constant getConstant() {
+		return n;
+	}
+	
 }
