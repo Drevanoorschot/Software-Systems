@@ -1,6 +1,6 @@
 package ss.week4.math;
 
-public class LinearProduct implements Function {
+public class LinearProduct implements Function, Integrandable {
 	private Function fx;
 	private Constant n;
 	
@@ -18,8 +18,16 @@ public class LinearProduct implements Function {
 		return new LinearProduct(fx.derivative(), n);
 	}
 	
-	public Constant getConstant() {
-		return n;
+	public String toString() {
+		return n.toString() + " * " + fx.toString();
+	}
+	@Override
+	public Function integrand() {
+		if (fx instanceof Integrandable) {
+			return new LinearProduct(((Integrandable) fx).integrand(), n);
+		} else {
+			return null;
+		}
 	}
 	
 }

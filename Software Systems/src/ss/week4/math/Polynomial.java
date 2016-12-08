@@ -2,14 +2,14 @@ package ss.week4.math;
 
 import java.util.*;
 
-public class Polynomial implements Function {
+public class Polynomial implements Function, Integrandable {
 	private List<LinearProduct> array;
-	private Function fx;
 
-	public Polynomial(double[] arguments) {
-		for (int i = 0; i < arguments.length; i++) {
-			array.add(new LinearProduct(new Exponent(arguments.length - i), 
-					new Constant(arguments[i])));
+	public Polynomial(List<Double> arguments) {
+		array = new ArrayList<LinearProduct>();
+		for (int i = 0; i < arguments.size(); i++) {
+			array.add(new LinearProduct(new Exponent(arguments.size() - i - 1), 
+					new Constant(arguments.get(i))));
 		}
 	}
 
@@ -23,19 +23,48 @@ public class Polynomial implements Function {
 	}
 
 	@Override
-/*	public Function derivative() {
-		Function derivedItem; 
-		LinearProduct castedDerivedItem;
-		List<LinearProduct> derivedArray = new ArrayList<LinearProduct>();
-		for (int i = 0; i < array.size(); i++) {
-			derivedItem = array.get(i).derivative();
-			castedDerivedItem = (LinearProduct) derivedItem;
-			derivedArray.add(castedDerivedItem);
-		}
-		return null;
-	}
-	*/
 	public Function derivative() {
-		return new Polynomial(
+		Function f = null;
+		for (int i = 0; i < array.size(); i++) {
+			Function a = array.get(i).derivative();
+			if (f == null) {
+				f = a;
+			} else {
+				f = new Sum(f, a);
+			}
+		}
+		return f;
+	}
+
+	@Override
+	public String toString() {
+		String s = "";
+		for (int i = 0; i < array.size(); i++) {
+			if (s.equals("")) {
+				s = s + array.get(i).toString();
+			} else {
+				s = s + " + " + array.get(i).toString();
+			}
+		}
+		return s;
+	}
+
+	@Override
+	public Function integrand() {
+		Function f = null;
+		for (int i = 0; i < array.size(); i++) {
+			if (array.get(i) instanceof Integrandable) {
+				Function a = array.get(i).integrand();
+				if (f == null) {
+					f = a;
+				} else {
+					f = new Sum(f, a);
+				}
+			} else {
+				return null;
+			}
+			
+		}
+		return f;
 	}
 }

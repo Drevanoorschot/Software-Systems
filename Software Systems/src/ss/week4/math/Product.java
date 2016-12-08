@@ -18,4 +18,7 @@ public class Product implements Function {
 	public Sum derivative() {
 		return new Sum(new Product(fx.derivative(), gx), new Product(fx, gx.derivative()));
 	}
+	public String toString() {
+		return fx.toString() + " * " + gx.toString();
+	}
 }

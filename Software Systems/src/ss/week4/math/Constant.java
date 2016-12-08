@@ -1,6 +1,6 @@
 package ss.week4.math;
 
-public class Constant implements Function {
+public class Constant implements Function, Integrandable {
 	double constant;
 	Constant function;
 
@@ -17,6 +17,11 @@ public class Constant implements Function {
 	}
 
 	public String toString() {
-		return this.toString();
+		return String.valueOf(constant);
+	}
+
+	@Override
+	public Function integrand() {
+		return new LinearProduct(new Exponent(1), function);
 	}
 }
