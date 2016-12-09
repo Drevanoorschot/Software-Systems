@@ -8,7 +8,7 @@ public class Polynomial implements Function, Integrandable {
 	public Polynomial(List<Double> arguments) {
 		array = new ArrayList<LinearProduct>();
 		for (int i = 0; i < arguments.size(); i++) {
-			array.add(new LinearProduct(new Exponent(arguments.size() - i - 1), 
+			array.add(new LinearProduct(new Exponent(i), 
 					new Constant(arguments.get(i))));
 		}
 	}

@@ -23,7 +23,7 @@ public class Exponent implements Function, Integrandable {
 
 	@Override
 	public Function integrand() {
-		return new LinearProduct(new Exponent(n + 1), new Constant(1 / (n + 1)));
+		return new LinearProduct(new Exponent(n + 1), new Constant(1.0 / (n + 1)));
 	}
 	 
  

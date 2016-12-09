@@ -33,7 +33,6 @@ public class PolynomialTest {
 	@Test
 	public void testDerivative() {
 		assertEquals(46, new Polynomial(ARGS).derivative().apply(5), DELTA);
-		//assertEquals(6, new Polynomial(ARGS).derivative().apply(0), DELTA);
 		assertEquals(-34, new Polynomial(ARGS).derivative().apply(-5), DELTA);
 	}
 	@Test
