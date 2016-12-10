@@ -265,7 +265,6 @@ public class Board {
     	}
     	diag = true;
     	for (int i = DIM * DIM - DIM; i >= DIM; i = i - DIM + 1) {
-    		System.out.println(i);
     		if (getField(i) != m) {
     			diag = false;
     		}
@@ -331,7 +330,7 @@ public class Board {
     /*@ ensures (\forall int i; 0 <= i & i < DIM * DIM;
                                 this.getField(i) == Mark.EMPTY); @*/
     public void reset() {
-    	// TODO: implement, see exercise P-4.18
+    	new Board();
     }
 
     /**

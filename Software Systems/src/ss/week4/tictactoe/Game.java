@@ -118,7 +118,19 @@ public class Game {
      * the changed game situation is printed.
      */
     private void play() {
-        // TODO: implement, see P-4.20
+    	int turn = 0;
+    	while (!(board.gameOver())) {
+    		update();
+    		if (turn == 1) {
+    			turn--;
+    		} else {
+    			turn ++;
+    		}
+    		players[turn].makeMove(board);
+    	}
+    	printResult();
+    	
+       
     }
 
     /**
