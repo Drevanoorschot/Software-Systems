@@ -45,8 +45,12 @@ public class LinkedList<Element> {
 		if (first.getElement() == element) {
 			return null;
 		}
+		Node ref = getNode(0);
+		Element refEl;
 		for (int i = 0; i < size(); i++) {
-			if (get(i) == element) {
+			ref = ref.next;
+			refEl = ref.element;
+			if (refEl == element) {
 				int j = 0;
 				while (element != get(j)) {
 					j++;

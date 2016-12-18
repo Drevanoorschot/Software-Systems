@@ -59,14 +59,7 @@ public class Board {
     //@ requires 0 <= col & col < DIM;
     /*@pure*/
     public int index(int row, int col) {
-    	int index = 0;
-    	for (int i = 0; i < row; i++) {
-    		index = index + 3;
-     	}
-    	for (int j = 0; j < col; j++) {
-    		index = index + 1;
-    	}
-        return index;
+        return row*3 + col;
     }
 
     /**
@@ -138,10 +131,7 @@ public class Board {
     //@ ensures \result == (this.getField(i) == Mark.EMPTY);
     /*@pure*/
     public boolean isEmptyField(int i) {
-    	if (isField(i)) {
-    		return getField(i) == Mark.EMPTY;
-    	}
-        return false;
+        return getField(i) == Mark.EMPTY;
     }
 
     /**
@@ -330,7 +320,9 @@ public class Board {
     /*@ ensures (\forall int i; 0 <= i & i < DIM * DIM;
                                 this.getField(i) == Mark.EMPTY); @*/
     public void reset() {
-    	new Board();
+    	for (int i = 0; i < DIM * DIM; i++) {
+    		setField(i, Mark.EMPTY);
+    	}
     }
 
     /**

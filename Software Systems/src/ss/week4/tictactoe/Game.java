@@ -118,16 +118,13 @@ public class Game {
      * the changed game situation is printed.
      */
     private void play() {
-    	int turn = 0;
+    	
     	while (!(board.gameOver())) {
     		update();
-    		if (turn == 1) {
-    			turn--;
-    		} else {
-    			turn ++;
-    		}
-    		players[turn].makeMove(board);
+    		current = (current + 1) % 2;
+    		players[current].makeMove(board);
     	}
+    	update();
     	printResult();
     	
        

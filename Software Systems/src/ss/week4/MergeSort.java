@@ -35,7 +35,7 @@ public class MergeSort {
 			}
 			//System.out.println(results);
 			for (int i = 0; i < results.size(); i++) {
-				list.set(i,(Elem) results.get(i));
+				list.set(i, results.get(i));
 			}
 		}
 	}
