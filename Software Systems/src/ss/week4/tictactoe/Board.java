@@ -59,7 +59,7 @@ public class Board {
     //@ requires 0 <= col & col < DIM;
     /*@pure*/
     public int index(int row, int col) {
-        return row*3 + col;
+        return row * 3 + col;
     }
 
     /**
@@ -218,20 +218,17 @@ public class Board {
      */
     /*@ pure */
     public boolean hasColumn(Mark m) {
-    	boolean col = true;
-    	int index = 0;
-    	for (int i = 0; i < DIM; i++) {
-    		for (int j = 0; j < DIM * DIM; j = j + DIM) {
-    			if (getField(j + index) != m) {
-    				col = false;
-    			}
-    		}
-    		if (col) {
-    			return col;
-    		}
-    		index = index + 1;
-    	}
-        return false;
+    	for (int c = 0; c < DIM; c++) {
+			for (int r = 0; r < DIM; r++) {
+				if (getField(r, c) != m) {
+					break;
+				}
+				if (r == DIM - 1) {
+					return true;
+				}
+			}
+		}
+    	return false;
     }
 
     /**
@@ -244,7 +241,25 @@ public class Board {
      */
     /*@ pure */
     public boolean hasDiagonal(Mark m) {
-    	boolean diag = true;
+    	for (int i = 0; i < DIM; i++) {
+    		if (getField(i, i) != m) {
+    			break;
+    		}
+    		if (i == DIM - 1) {
+    			return true;
+    		}
+    	}
+    	for (int i = 0; i < DIM; i++) {
+    		if (getField(DIM - i - 1, i) != m) {
+    			break;
+    		}
+    		if (i == DIM - 1) {
+    			return true;
+    		}
+    	}
+    	return false;
+    } 
+    /**	boolean diag = true;
     	for (int i = 0; i < DIM * DIM; i = i + DIM + 1) {
     		if (getField(i) != m) {
     			diag = false;
@@ -261,7 +276,7 @@ public class Board {
     	}
         return diag;
     }
-
+**/
     /**
      * Checks if the mark m has won. A mark wins if it controls at
      * least one row, column or diagonal.
