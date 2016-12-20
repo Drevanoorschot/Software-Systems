@@ -17,7 +17,9 @@ public class SmartStrategy extends NaiveStrategy {
 		}
 		for (int i = 0; i < Board.DIM * Board.DIM; i++) {
 			Board boardCopy = b.deepCopy();
-			boardCopy.setField(i, m);
+			if (b.getField(i) == Mark.EMPTY) {
+				boardCopy.setField(i, m);
+			}
 			if (boardCopy.hasWinner() == true) {
 				return i;
 			}
