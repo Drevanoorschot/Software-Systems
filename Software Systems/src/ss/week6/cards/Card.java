@@ -1,11 +1,13 @@
 package ss.week6.cards;
 
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.util.Scanner;
 import java.io.BufferedReader;
+import java.io.DataInput;
+import java.io.DataOutput;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 public class Card {
 
@@ -348,18 +350,44 @@ public class Card {
 	}
 
 	public void write(PrintWriter writer) {
-		writer.print(this.toString());
-		writer.println();
+		writer.println(this.toString());
+		writer.flush();
 	}
 	
 	public static Card read(BufferedReader in) throws EOFException {
-		BufferedReader input = new BufferedReader(in);
-		Scanner scanner = new Scanner(input);
-		if (scanner.hasNext()) {
-			Card card = new Card(scanner.next().toString().charAt(0), scanner.next().toString().charAt(0));
-			return card;
-		} else {
-			return null;
+		try {
+			String[] line = in.readLine().split(" ");
+			if (isValidSuit(line[0].charAt(0)) && isValidRank(Character.toUpperCase(line[1].charAt(0)))) {
+				return new Card(line[0].charAt(0), Character.toUpperCase(line[1].charAt(0)));
+			} else {
+				return null;
+			}
+			
+		} catch(IOException | ArrayIndexOutOfBoundsException e) {
+			throw new EOFException();
+		}
+	}
+	
+	public Card read(DataInput in) {
+		try {
+			if (in.readC) {
+				return new Card()
+			} else {
+				return null;
+			}
+		}
+		catch () {
+			
+		}
+	}
+	
+	public void write(DataOutput out) {
+		try {
+			out.writeChar(this.suit);
+			out.writeChar(this.rank);
+		}
+		catch (IOException e) {
+			System.out.println("an error occured");
 		}
 	}
 
