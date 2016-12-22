@@ -6,6 +6,8 @@ import java.io.DataOutput;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
@@ -353,7 +355,7 @@ public class Card {
 		writer.println(this.toString());
 		writer.flush();
 	}
-	
+
 	public static Card read(BufferedReader in) throws EOFException {
 		try {
 			String[] line = in.readLine().split(" ");
@@ -362,33 +364,43 @@ public class Card {
 			} else {
 				return null;
 			}
-			
-		} catch(IOException | ArrayIndexOutOfBoundsException e) {
+
+		} catch (IOException | ArrayIndexOutOfBoundsException e) {
 			throw new EOFException();
 		}
 	}
-	
-	public Card read(DataInput in) {
+
+	public static Card read(DataInput in) throws EOFException {
 		try {
-			if (in.readC) {
-				return new Card()
+			Character suit = in.readChar();
+			in.skipBytes(2);
+			Character rank = in.readChar();
+			if (isValidSuit(suit) && isValidRank(rank)) {
+				return new Card(suit, rank);
 			} else {
 				return null;
 			}
-		}
-		catch () {
-			
+		} catch (IOException | ArrayIndexOutOfBoundsException e) {
+			throw new EOFException();
 		}
 	}
-	
+
 	public void write(DataOutput out) {
 		try {
 			out.writeChar(this.suit);
 			out.writeChar(this.rank);
-		}
-		catch (IOException e) {
+		} catch (IOException e) {
 			System.out.println("an error occured");
 		}
+	}
+	
+	public static Card read(ObjectInputStream in) {
+		
+	}
+	
+	public void write(ObjectOutputStream out) throws IOException {
+		out.writeObject(new Card('C', 'J'));
+		
 	}
 
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
