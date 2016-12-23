@@ -9,7 +9,8 @@ public class VoteList {
 	public void addVote(String party) {
 		if (voteList.containsKey(party)) {
 			int i = voteList.get(party);
-			voteList.put(party, i++);
+			i++;
+			voteList.put(party, i);
 		} else {
 			voteList.put(party, 1);
 		}

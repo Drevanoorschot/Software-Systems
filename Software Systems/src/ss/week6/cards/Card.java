@@ -6,15 +6,20 @@ import java.io.DataOutput;
 import java.io.EOFException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 
-public class Card {
+public class Card implements Serializable {
 
 	// ---- constants -----------------------------------
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	// ranks are 2, ..., 9 and:
 	public static final char JACK = 'J';
 	public static final char QUEEN = 'Q';
@@ -358,11 +363,16 @@ public class Card {
 
 	public static Card read(BufferedReader in) throws EOFException {
 		try {
-			String[] line = in.readLine().split(" ");
-			if (isValidSuit(line[0].charAt(0)) && isValidRank(Character.toUpperCase(line[1].charAt(0)))) {
-				return new Card(line[0].charAt(0), Character.toUpperCase(line[1].charAt(0)));
+			String nextLine = in.readLine();
+			if (nextLine != null) {
+				String[] line = nextLine.split(" ");
+				if (isValidSuit(line[0].charAt(0)) && isValidRank(Character.toUpperCase(line[1].charAt(0)))) {
+					return new Card(line[0].charAt(0), Character.toUpperCase(line[1].charAt(0)));
+				} else {
+					return null;
+				}
 			} else {
-				return null;
+				throw new EOFException();
 			}
 
 		} catch (IOException | ArrayIndexOutOfBoundsException e) {
@@ -393,16 +403,20 @@ public class Card {
 			System.out.println("an error occured");
 		}
 	}
-	
-	public static Card read(ObjectInputStream in) {
-		
-	}
-	
-	public void write(ObjectOutputStream out) throws IOException {
-		out.writeObject(new Card('C', 'J'));
-		
+
+	public static Card read(ObjectInput in) throws EOFException {
+		try {
+			return (Card) in.readObject();
+		} catch (IOException | ArrayIndexOutOfBoundsException | ClassNotFoundException e) {
+			throw new EOFException();
+		}
 	}
 
+	public void write(ObjectOutput out) throws IOException {
+		out.writeObject(this);
+		out.flush();
+	}
+//most effective: object --> no conversion
 	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
 		PrintWriter writer;
 		if (args.length == 0) {

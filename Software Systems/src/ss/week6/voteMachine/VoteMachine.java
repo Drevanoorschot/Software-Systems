@@ -1,25 +1,41 @@
 package ss.week6.voteMachine;
 
 public class VoteMachine {
-	private static PartyList partyList;
-	private static VoteList voteList;
-	
-	
-	public static void main(String[] args) {
-		start();
+	private PartyList partyList;
+	private VoteList voteList;
+	public VoteMachine() {
 		partyList = new PartyList();
 		voteList = new VoteList();
 	}
 	
-	public static void start() {
-		
+	public static void main(String[] args) {
+		VoteMachine voteMachine = new VoteMachine();
+		voteMachine.start();
 	}
 	
-	public static void addParty(String party) {
+	public void start() {
+		VoteTUIView view = new VoteTUIView();
+		view.start();
+	}
+	
+	public void addParty(String party) {
 		partyList.addParty(party);
 	}
 	
-	public static void vote(String party) {
-		voteList.addVote(party);
+	public boolean vote(String party) {
+		if (partyList.hasParty(party)) {
+			voteList.addVote(party);
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public PartyList getPartyList() {
+		return partyList;
+	}
+	
+	public VoteList getVoteList() {
+		return voteList;
 	}
 }
