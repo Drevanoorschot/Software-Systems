@@ -7,6 +7,7 @@ public class PartyList extends Observable {
 
 	public void addParty(String party) {
 		partyList.add(party);
+		setChanged(true);
 	}
 	
 	public boolean hasParty(String party) {

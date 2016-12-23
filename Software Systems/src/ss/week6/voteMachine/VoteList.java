@@ -14,9 +14,9 @@ public class VoteList extends Observable {
 		} else {
 			voteList.put(party, 1);
 		}
-		
+		setChanged(true);
 	}
-	
+
 	public Map<String, Integer> getVotes() {
 		return voteList;
 	}

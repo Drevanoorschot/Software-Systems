@@ -15,6 +15,8 @@ public class VoteMachine {
 	
 	public void start() {
 		VoteTUIView view = new VoteTUIView();
+		partyList.addObserver(view);
+		voteList.addObserver(view);
 		view.start();
 	}
 	

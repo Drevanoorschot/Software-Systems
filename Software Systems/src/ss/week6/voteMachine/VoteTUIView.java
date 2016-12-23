@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-public class VoteTUIView {
+public class VoteTUIView implements Observer {
 	private VoteMachine voteMachine;
 
 	public VoteTUIView() {
@@ -23,9 +23,10 @@ public class VoteTUIView {
 				showVotes(voteMachine.getVoteList().getVotes());
 			} else if (input.contains("ADD PARTY")) {
 				voteMachine.addParty(inputlist[2]);
-				showMessage("party added");
+				update(voteMachine.getPartyList(), "party");
 			} else if (input.contains("VOTE")) {
 				voteMachine.vote(inputlist[1]);
+				update(voteMachine.getVoteList(), "vote");
 			} else if (input.contains("PARTIES")) {
 				showParties(voteMachine.getPartyList().getParties());
 			} else if (input.contains("EXIT")) {
@@ -59,8 +60,12 @@ public class VoteTUIView {
 		System.err.flush();
 	}
 
-	private void showMessage(String s) {
-		System.out.println(s);
-		System.out.flush();
+	@Override
+	public void update(Observable o, String choice) {
+		if (o.hasChanged() == true) {
+			o.notifyObserver(choice);
+			o.setChanged(false);
+
+		}
 	}
 }
