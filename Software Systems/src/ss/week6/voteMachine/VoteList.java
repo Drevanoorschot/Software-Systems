@@ -3,7 +3,7 @@ package ss.week6.voteMachine;
 import java.util.HashMap;
 import java.util.Map;
 
-public class VoteList {
+public class VoteList extends Observable {
 	private Map<String, Integer> voteList = new HashMap<String, Integer>();
 	
 	public void addVote(String party) {
