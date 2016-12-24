@@ -5,6 +5,8 @@ import org.junit.Test;
 import ss.week6.dictionaryattack.DictionaryAttack;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -24,28 +26,28 @@ public class DictionaryAttackTest {
     private static final String PATH = ""; //Your path to the test folder
 
     @Before
-    public void setUp() {
+    public void setUp() throws IOException {
         dictionaryAttack = new DictionaryAttack();
-        try {
-            dictionaryAttack.readPasswords(PATH + "LeakedPasswords.txt");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        dictionaryAttack.readPasswords("LeakedPasswords.txt");
     }
 
     /**
      * Test for <tt>getPasswordHash</tt>
+     * @throws NoSuchAlgorithmException 
+     * @throws UnsupportedEncodingException 
      */
     @Test
-    public void testGetPasswordHash() {
+    public void testGetPasswordHash() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         assertEquals("5f4dcc3b5aa765d61d8327deb882cf99", dictionaryAttack.getPasswordHash("password"));
     }
 
     /**
      * Test for <tt>checkPassword</tt>
+     * @throws NoSuchAlgorithmException 
+     * @throws UnsupportedEncodingException 
      */
     @Test
-    public void testCheckPassword() {
+    public void testCheckPassword() throws UnsupportedEncodingException, NoSuchAlgorithmException {
         assertTrue(dictionaryAttack.checkPassword("katrine", "spongebob"));
     }
 

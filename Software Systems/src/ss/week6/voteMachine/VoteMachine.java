@@ -33,7 +33,7 @@ public class VoteMachine {
 		}
 	}
 	
-	public PartyList getPartyList() {
+	public PartyList getParties() {
 		return partyList;
 	}
 	

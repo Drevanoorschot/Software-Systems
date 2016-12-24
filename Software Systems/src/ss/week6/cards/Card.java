@@ -366,7 +366,8 @@ public class Card implements Serializable {
 			String nextLine = in.readLine();
 			if (nextLine != null) {
 				String[] line = nextLine.split(" ");
-				if (isValidSuit(line[0].charAt(0)) && isValidRank(Character.toUpperCase(line[1].charAt(0)))) {
+				if (isValidSuit(line[0].charAt(0)) && 
+						isValidRank(Character.toUpperCase(line[1].charAt(0)))) {
 					return new Card(line[0].charAt(0), Character.toUpperCase(line[1].charAt(0)));
 				} else {
 					return null;

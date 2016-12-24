@@ -3,8 +3,9 @@ package ss.week6.voteMachine;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import ss.week6.voteMachine.gui.*;
 
-public class VoteTUIView implements Observer {
+public class VoteTUIView implements Observer, VoteView {
 	private VoteMachine voteMachine;
 
 	public VoteTUIView() {
@@ -15,7 +16,7 @@ public class VoteTUIView implements Observer {
 		boolean running = true;
 		System.out.println("Hello!");
 		Scanner scanner = new Scanner(System.in);
-		VoteTUIView view = new VoteTUIView();
+		VoteView view = new VoteGUIView(voteMachine);
 		while (running) {
 			String input = scanner.nextLine();
 			String[] inputlist = input.split(" ");
@@ -23,12 +24,12 @@ public class VoteTUIView implements Observer {
 				showVotes(voteMachine.getVoteList().getVotes());
 			} else if (input.contains("ADD PARTY")) {
 				voteMachine.addParty(inputlist[2]);
-				update(voteMachine.getPartyList(), "party");
+				update(voteMachine.getParties(), "party");
 			} else if (input.contains("VOTE")) {
 				voteMachine.vote(inputlist[1]);
 				update(voteMachine.getVoteList(), "vote");
 			} else if (input.contains("PARTIES")) {
-				showParties(voteMachine.getPartyList().getParties());
+				showParties(voteMachine.getParties().getParties());
 			} else if (input.contains("EXIT")) {
 				System.out.println("Terminating...");
 				running = false;
@@ -67,5 +68,13 @@ public class VoteTUIView implements Observer {
 			o.setChanged(false);
 
 		}
+	}
+
+	@Override
+	public void update(java.util.Observable arg0, Object arg1) {
+		if (arg0.hasChanged() == true) {
+			arg0.notifyObservers(arg1);
+		}
+		
 	}
 }
