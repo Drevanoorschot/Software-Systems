@@ -1,5 +1,7 @@
 package ss.week6.voteMachine;
 
+import ss.week6.voteMachine.gui.VoteGUIView;
+
 public class VoteMachine {
 	private PartyList partyList;
 	private VoteList voteList;
@@ -14,7 +16,7 @@ public class VoteMachine {
 	}
 	
 	public void start() {
-		VoteTUIView view = new VoteTUIView();
+		VoteGUIView view = new VoteGUIView(this);
 		partyList.addObserver(view);
 		voteList.addObserver(view);
 		view.start();
