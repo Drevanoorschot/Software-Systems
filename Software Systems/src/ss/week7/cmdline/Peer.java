@@ -34,6 +34,7 @@ public class Peer implements Runnable {
     public Peer(String nameArg, Socket sockArg) throws IOException {
     	name = nameArg;
     	sock = sockArg;
+    	in = new BufferedReader(new InputStreamReader(sock.getInputStream()));
     }
 
     /**
