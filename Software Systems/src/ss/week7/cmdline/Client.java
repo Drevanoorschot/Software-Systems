@@ -6,7 +6,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 /**
- * Client class for a simple client-server application
+ * Client class for a simple client-server application.
  * @author  Theo Ruys
  * @version 2005.02.21
  */
